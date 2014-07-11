@@ -4,9 +4,9 @@
 %define debug_package %{nil}
 
 Name: kglobalaccel
-Version: 4.100.0
-Release: 2
-Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/%{version}/%{name}-%{version}.tar.xz
+Version: 5.0.0
+Release: 1
+Source0: http://ftp5.gwdg.de/pub/linux/kde/stable/frameworks/%{version}/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
 URL: http://kde.org/
 License: GPL
