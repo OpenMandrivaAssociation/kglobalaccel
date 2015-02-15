@@ -5,7 +5,7 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Name: kglobalaccel
-Version: 5.6.0
+Version: 5.7.0
 Release: 1
 Source0: http://ftp5.gwdg.de/pub/linux/kde/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
@@ -62,7 +62,10 @@ for i in .%{_datadir}/locale/*/LC_MESSAGES/*.qm; do
 done
 
 %files -f %{name}.lang
+%{_bindir}/kglobalaccel5
+%{_datadir}/dbus-1/services/*
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.*
+%{_datadir}/kservices5/kglobalaccel5.desktop
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
