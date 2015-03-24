@@ -17,12 +17,16 @@ BuildRequires: cmake(KF5Config)
 BuildRequires: cmake(KF5CoreAddons)
 BuildRequires: cmake(KF5Crash)
 BuildRequires: cmake(KF5DBusAddons)
+BuildRequires: cmake(KF5I18n)
+BuildRequires: cmake(KF5WindowSystem)
 BuildRequires: ninja
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Test)
+BuildRequires: pkgconfig(Qt5Widgets)
 BuildRequires: pkgconfig(Qt5X11Extras)
 BuildRequires: pkgconfig(xcb-keysyms)
 BuildRequires: pkgconfig(xrender)
+BuildRequires: pkgconfig(x11)
 BuildRequires: qmake5
 BuildRequires: extra-cmake-modules5
 Requires: %{libname} = %{EVRD}
