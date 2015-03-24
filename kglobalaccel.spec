@@ -13,6 +13,7 @@ URL: http://kde.org/
 License: GPL
 Group: System/Libraries
 BuildRequires: cmake
+BuildRequires: cmake(KF5Config)
 BuildRequires: ninja
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Test)
