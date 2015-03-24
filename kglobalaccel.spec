@@ -14,6 +14,7 @@ License: GPL
 Group: System/Libraries
 BuildRequires: cmake
 BuildRequires: cmake(KF5Config)
+BuildRequires: cmake(KF5CoreAddons)
 BuildRequires: ninja
 BuildRequires: pkgconfig(Qt5Core)
 BuildRequires: pkgconfig(Qt5Test)
