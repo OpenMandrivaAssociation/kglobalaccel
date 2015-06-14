@@ -79,6 +79,6 @@ done
 
 %files -n %{devname}
 %{_includedir}/*
-%{_libdir}/libKF5GlobalAccel.so.so
+%{_libdir}/libKF5GlobalAccel.so
 %{_libdir}/cmake/KF5GlobalAccel
 %{_libdir}/qt5/mkspecs/modules/*
