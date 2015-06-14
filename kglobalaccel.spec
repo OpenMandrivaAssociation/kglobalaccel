@@ -6,7 +6,7 @@
 
 Name: kglobalaccel
 Version: 5.11.0
-Release: 1
+Release: 2
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
 URL: http://kde.org/
@@ -75,9 +75,10 @@ done
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
 %{_libdir}/*.so.%{version}
+%{_libdir}/libKF5GlobalAccelPrivate.so
 
 %files -n %{devname}
 %{_includedir}/*
-%{_libdir}/*.so
+%{_libdir}/libKF5GlobalAccel.so.so
 %{_libdir}/cmake/KF5GlobalAccel
 %{_libdir}/qt5/mkspecs/modules/*
