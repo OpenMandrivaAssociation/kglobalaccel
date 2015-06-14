@@ -70,6 +70,7 @@ done
 %{_datadir}/dbus-1/services/*
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.*
 %{_datadir}/kservices5/kglobalaccel5.desktop
+%{_libdir}/qt5/plugins/org.kde.kglobalaccel5.platforms/KF5GlobalAccelPrivateXcb.so
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
