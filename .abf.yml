@@ -1,4 +1,2 @@
-removed_sources:
-  kglobalaccel-5.13.0.tar.xz: 41ee0ebb96f55a03cf010fb452046aeb8b91ca77
 sources:
-  kglobalaccel-5.38.0.tar.xz: 64b4e9208fe7bec81461fb63b134a64742717f48
+  kglobalaccel-5.38.1.tar.xz: fbadac6c9b7a934ef114df948425ab537a58a555
