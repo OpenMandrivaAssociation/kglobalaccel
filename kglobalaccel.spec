@@ -5,8 +5,8 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Name: kglobalaccel
-Version:	5.56.0
-Release:	2
+Version:	5.57.0
+Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
 URL: http://kde.org/
@@ -29,6 +29,8 @@ BuildRequires: pkgconfig(Qt5Xml)
 BuildRequires: pkgconfig(xcb-keysyms)
 BuildRequires: pkgconfig(xrender)
 BuildRequires: pkgconfig(x11)
+# For QCH format docs
+BuildRequires: qt5-assistant
 Requires: %{libname} = %{EVRD}
 
 %description
@@ -49,6 +51,14 @@ Requires: %{libname} = %{EVRD}
 
 %description -n %{devname}
 KGlobalAccel provides access to global accelerator keys.
+
+%package -n %{name}-devel-docs
+Summary: Developer documentation for %{name} for use with Qt Assistant
+Group: Documentation
+Suggests: %{devname} = %{EVRD}
+
+%description -n %{name}-devel-docs
+Developer documentation for %{name} for use with Qt Assistant
 
 %prep
 %setup -q
@@ -85,3 +95,6 @@ done
 %{_libdir}/libKF5GlobalAccel.so
 %{_libdir}/cmake/KF5GlobalAccel
 %{_libdir}/qt5/mkspecs/modules/*
+
+%files -n %{name}-devel-docs
+%{_docdir}/qt5/*.{tags,qch}
