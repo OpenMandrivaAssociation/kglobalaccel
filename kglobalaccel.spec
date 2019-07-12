@@ -5,7 +5,7 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Name: kglobalaccel
-Version:	5.59.0
+Version:	5.60.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
@@ -85,7 +85,7 @@ done
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.*
 %{_datadir}/kservices5/kglobalaccel5.desktop
 %{_libdir}/qt5/plugins/org.kde.kglobalaccel5.platforms/KF5GlobalAccelPrivateXcb.so
-%{_sysconfdir}/xdg/kglobalaccel.categories
+%{_datadir}/qlogging-categories5/kglobalaccel.categories
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
