@@ -5,7 +5,7 @@
 
 Name: kglobalaccel
 Version:	5.108.0
-Release:	1
+Release:	2
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
 URL: http://kde.org/
@@ -32,6 +32,7 @@ BuildRequires: pkgconfig(x11)
 BuildRequires: doxygen
 BuildRequires: qt5-assistant
 Requires: %{libname} = %{EVRD}
+Requires: %{name}-runtime
 
 %description
 KGlobalAccel provides access to global accelerator keys.
@@ -62,7 +63,12 @@ Developer documentation for %{name} for use with Qt Assistant
 
 %prep
 %setup -q
-%cmake_kde5
+# As per
+# https://community.kde.org/Plasma/Plasma_6#Packaging_notes
+# we'll drop the runtime files from KF5 and use the KF6 versions
+# even before the official release.
+%cmake_kde5 \
+	-DBUILD_RUNTIME:BOOL=OFF
 
 %build
 %ninja -C build
@@ -79,14 +85,9 @@ for i in .%{_datadir}/locale/*/LC_MESSAGES/*.qm; do
 done
 
 %files -f %{name}.lang
-%{_bindir}/kglobalaccel5
-%{_datadir}/dbus-1/services/*
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.*
-%{_datadir}/kservices5/kglobalaccel5.desktop
-%{_libdir}/qt5/plugins/org.kde.kglobalaccel5.platforms/KF5GlobalAccelPrivateXcb.so
 %{_datadir}/qlogging-categories5/kglobalaccel.categories
 %{_datadir}/qlogging-categories5/kglobalaccel.renamecategories
-%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
