@@ -5,7 +5,7 @@
 
 Name: kglobalaccel
 Version:	5.108.0
-Release:	2
+Release:	3
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
 URL: http://kde.org/
@@ -83,6 +83,9 @@ for i in .%{_datadir}/locale/*/LC_MESSAGES/*.qm; do
 	echo -n "%lang($LNG) " >>$L
 	echo $i |cut -b2- >>$L
 done
+
+# We get this from kglobalaccel-runtime
+rm -f %{buildroot}%{_datadir}/dbus-1/interfaces/kf5_org.kde.KGlobalAccel.xml
 
 %files -f %{name}.lang
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.*
