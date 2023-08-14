@@ -33,6 +33,7 @@ BuildRequires: doxygen
 BuildRequires: qt5-assistant
 Requires: %{libname} = %{EVRD}
 Requires: %{name}-runtime
+Requires: %{name}-dbus-interfaces
 
 %description
 KGlobalAccel provides access to global accelerator keys.
@@ -62,13 +63,8 @@ Suggests: %{devname} = %{EVRD}
 Developer documentation for %{name} for use with Qt Assistant
 
 %prep
-%setup -q
-# As per
-# https://community.kde.org/Plasma/Plasma_6#Packaging_notes
-# we'll drop the runtime files from KF5 and use the KF6 versions
-# even before the official release.
-%cmake_kde5 \
-	-DBUILD_RUNTIME:BOOL=OFF
+%autosetup -p1
+%cmake_kde5
 
 %build
 %ninja -C build
@@ -76,21 +72,31 @@ Developer documentation for %{name} for use with Qt Assistant
 %install
 %ninja_install -C build
 
-L="`pwd`/%{name}.lang"
+L="$(pwd)/%{name}.lang"
 cd %{buildroot}
 for i in .%{_datadir}/locale/*/LC_MESSAGES/*.qm; do
-	LNG=`echo $i |cut -d/ -f5`
-	echo -n "%lang($LNG) " >>$L
-	echo $i |cut -b2- >>$L
+    LNG=$(echo $i |cut -d/ -f5)
+    echo -n "%lang($LNG) " >>$L
+    echo $i |cut -b2- >>$L
 done
 
-# We get this from kglobalaccel-runtime
-rm -f %{buildroot}%{_datadir}/dbus-1/interfaces/kf5_org.kde.KGlobalAccel.xml
+# We get this from kglobalaccel-dbus-interfaces
+rm -rf %{buildroot}%{_datadir}/dbus-1/interfaces
+
+# As per
+# https://community.kde.org/Plasma/Plasma_6#Packaging_notes
+# we'll drop the runtime files from KF5 and use the KF6 versions
+# even before the official release.
+rm -f %{buildroot}%{_prefix}/lib/systemd/user/plasma-kglobalaccel.service
 
 %files -f %{name}.lang
-%{_datadir}/dbus-1/interfaces/kf5_org.kde.*
 %{_datadir}/qlogging-categories5/kglobalaccel.categories
 %{_datadir}/qlogging-categories5/kglobalaccel.renamecategories
+%{_bindir}/kglobalaccel5
+%dir %{_libdir}/qt5/plugins/org.kde.kglobalaccel5.platforms
+%{_libdir}/qt5/plugins/org.kde.kglobalaccel5.platforms/KF5GlobalAccelPrivateXcb.so
+%{_datadir}/dbus-1/services/org.kde.kglobalaccel.service
+%{_datadir}/kservices5/kglobalaccel5.desktop
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
