@@ -5,7 +5,7 @@
 
 Name: kglobalaccel
 Version:	5.109.0
-Release:	2
+Release:	3
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 global accelerator library
 URL: http://kde.org/
@@ -33,7 +33,7 @@ BuildRequires: doxygen
 BuildRequires: qt5-assistant
 Requires: %{libname} = %{EVRD}
 Requires: %{name}-runtime
-Obsoletes: %{name}-dbus-interfaces < %{EVRD}
+Obsoletes: %{name}-dbus-interfaces < 5.240.0-1
 
 %description
 KGlobalAccel provides access to global accelerator keys.
